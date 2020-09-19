@@ -1,3 +1,7 @@
+# Author: YUL
+# Date: 09/18/2020
+# Description: The driver.
+# The initial class GessGame is imported and inherited by class GessGame_Pygame that's created specifically for this project without any modifications. 
 
 from GessGame_Pygame import GessGame_Pygame
 from constants import *
@@ -17,11 +21,10 @@ def main():
     to_position = ""
 
     while run:
-
         if game.get_game_state() == "UNFINISHED": 
             game.draw_text(window, game.get_turn(), 100, 40, 32, PINK)
             if not from_position:
-                instruction = "Select a ring"
+                instruction = "Select a piece"
             else:
                 instruction = "Select destination"
             game.draw_text(window, instruction, WIDTH/2, 50, 32, PINK)
@@ -36,7 +39,7 @@ def main():
                 pos = pygame.mouse.get_pos()
                 from_position = game.process_click(pos) # will be "" if clicked off boundary
                 game.pygame_board(window)
-                game.highlight_ring(window, pos)
+                game.highlight_piece(window, pos)
                 pygame.display.update()
 
             # when a mouse click occures, if the from_position already yet filled, fill the to_position
@@ -44,8 +47,8 @@ def main():
                 pos = pygame.mouse.get_pos()
                 to_position = game.process_click(pos)
 
-                # when both positions are filled, call make_move() method
-                if from_position and to_position:
+                # when both positions are filled and they are not the same, call make_move() method
+                if from_position and to_position and from_position != to_position:
                     game.make_move(from_position, to_position)
                     game.pygame_board(window)
                     pygame.display.update()
@@ -63,7 +66,7 @@ def main():
                         else:
                             text = "WHITE WON"
                         game.draw_text(window, text, WIDTH/2, HEIGHT/2, 64, YELLOW)
-                        game.draw_text(window, "Press any key to begin", WIDTH/2, 50, 32, PINK)
+                        game.draw_text(window, "Press any key to start a new game", WIDTH/2, 50, 32, PINK)
                         pygame.display.update()
 
                         # player can start a new game

@@ -1,5 +1,3 @@
-import pygame
-
 WIDTH, HEIGHT = 1200, 1200
 ROWS, COLS = 20, 20  #18x18
 MARGIN = WIDTH/(6*2)

@@ -1,4 +1,4 @@
-# Author: Yujun Liu
+# Author: YJL
 # Date: 05/28/2020
 # Description: This script contains a class named GessGame that represets a board game called Gess. A Gess game is played by two players
 # (black and white) on an 18x18 grid of a board. Each player has 43 stones at the beggining and takes turn to make a move, with black starting.

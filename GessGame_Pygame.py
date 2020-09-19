@@ -1,16 +1,32 @@
+# Author: YUL
+# Date: 09/18/2020
+# Description: Create GUI for Gess Game using Pygame.
+# The initial class GessGame is imported and inherited by the class that's created specifically for this project without any modifications. 
+
+
 from GessGame import GessGame
 from constants import *
 import pygame
 
 class GessGame_Pygame(GessGame):
-    
+    """ 
+    Inherit from class GessGame
+
+    Totally 4 extra methods are implemented:
+        1) pygame_board(self, window)
+        2) draw_text(self, window, text, midtop_x, midtop_y, font_size, font_color, font_style = "comicsansms")
+        3) process_click(self, position)
+        4) highlight_piece(self, window, win_pos)
+    """
 
     def pygame_board(self, window):
+        """
+        render the board via looping thru data member self._board 
+        """
         window.fill(BLACK)
-        # background = pygame.image.load("background_image.png")
-        # window.blit(background, (0, 0))
+        self.draw_text(window, "github.com/yujyuj/GessGame", 160, 1160, 14, WHITE, "lucidasans")
+        stone_radius = int(SQUARE_SIZE/3)
 
-        radius = int(SQUARE_SIZE/3)
         for col in range(20):
             for row in range(20):
                 # grid
@@ -19,10 +35,10 @@ class GessGame_Pygame(GessGame):
 
                 # # stones
                 if self._board[row][col] == '●':
-                    pygame.draw.circle(window, BLACK, (int(col*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN), int(row*SQUARE_SIZE + int(SQUARE_SIZE/2) + MARGIN)), radius)
+                    pygame.draw.circle(window, BLACK, (int(col*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN), int(row*SQUARE_SIZE + int(SQUARE_SIZE/2) + MARGIN)), stone_radius)
                 elif self._board[row][col] == '○':
-                    pygame.draw.circle(window, WHITE, (int(col*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN), int(row*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN)), radius - 1) # width == 0 (default) fill the circle
-                    pygame.draw.circle(window, BLACK, (int(col*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN), int(row*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN)), radius, 2) # width > 0, thickness
+                    pygame.draw.circle(window, WHITE, (int(col*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN), int(row*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN)), stone_radius - 1) # width == 0 (default) fill the circle
+                    pygame.draw.circle(window, BLACK, (int(col*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN), int(row*SQUARE_SIZE + SQUARE_SIZE/2 + MARGIN)), stone_radius, 2) # width > 0, thickness
 
         # render text
         x = 0
@@ -33,8 +49,7 @@ class GessGame_Pygame(GessGame):
         
     def draw_text(self, window, text, midtop_x, midtop_y, font_size, font_color, font_style = "comicsansms"):
         """
-        Takes 6 parameters and sets the image surface's midtop coordinates as the passed in midtop_x and midtop_y
-        No return.
+        Takes 7 parameters and sets the image surface's midtop coordinates as the passed in midtop_x and midtop_y
         """
         font_name = pygame.font.match_font(font_style)
         font = pygame.font.Font(font_name, font_size)
@@ -45,7 +60,10 @@ class GessGame_Pygame(GessGame):
 
 
     def process_click(self, position):
-
+        """
+        Takes a pair of position (x, y) where the user clicked on the window.
+        If in boundary, converts and returns string position in the format like "c3", otherwise returns empty string 
+        """
         col_lookup_table = {
             3:'b', 4:'c', 5:'d', 6:'e', 7:'f', 8:'g', 9:'h', 10:'i', 11:'j', 12:'k', 13:'l', 14:'m', 15:'n', 16:'o', 17:'p', 18:'q', 19:'r', 20:'s'
         }
@@ -59,8 +77,11 @@ class GessGame_Pygame(GessGame):
         return ""
 
 
-    def highlight_ring(self, window, win_pos):
-
+    def highlight_piece(self, window, win_pos):
+        """
+        Hightlights the piece that user picked to move
+        """
+        # only when user clicks in boundary will the piece be highlighted
         if 150 <= win_pos[0] <= 1050 and 150 <= win_pos[1] <= 1050:
             left = ((win_pos[0] - MARGIN)//50 + 1) * 50
             top = ((win_pos[1] - MARGIN)//50 + 1) * 50
