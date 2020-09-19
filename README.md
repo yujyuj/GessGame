@@ -21,18 +21,27 @@ There's an online implementation [here](https://gess.h3mm3.com/) to play, but it
 
 
 ### Instruction
-The GessGame.exe can be downloaded and run on any window machines without any dependencies/packages/python interpreter.
+Option 1: Use python interpreter
 
-You can also make your own executable using ```pyinstaller```. 
-* Step 1, Place the following 4 Pyhon files in a folder
+Place the following 4 Pyhon files in a folder, then run the ```main.py```.
 ``` 
 main.py
 GessGame_Pygame.py
 GessGame.py
 constants.py
 ```
-* step 2, Open command line and run  ```pyinstaller main.py --onefile --noconsole```
-* step 3, Two folders ```build``` and ```dist``` should be generated. Open the ```dist``` folder and there exists the executable.
+
+Option 2 Use ```pyinstaller``` to make an executable that can be downloaded and run on any Windows machines without any dependencies/packages/python interpreter.
+* step 1, intall ```pyinstaller``` with ```pip install pyinstaller```
+* Step 2, Place the following 4 Pyhon files in a folder
+``` 
+main.py
+GessGame_Pygame.py
+GessGame.py
+constants.py
+```
+* step 3, Open command line and run  ```pyinstaller main.py --onefile --noconsole```
+* step 4, Two folders ```build``` and ```dist``` should be generated. Open the ```dist``` folder and there exists the executable.
 
 <!--  Images -->
 ![demo](demo.gif)
