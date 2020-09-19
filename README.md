@@ -11,4 +11,4 @@
 * Python, Pygame
 
 <!--  Images -->
-<!-- ![Screenshot](/public/screenshot.jpg) -->
+![demo](demo.gif)

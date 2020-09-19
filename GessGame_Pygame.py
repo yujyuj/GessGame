@@ -1,6 +1,6 @@
-# Author: YUL
+# Author: YJL
 # Date: 09/18/2020
-# Description: Create GUI for Gess Game using Pygame.
+# Description: Add GUI to Gess Game using Pygame.
 # The initial class GessGame is imported and inherited by the class that's created specifically for this project without any modifications. 
 
 
