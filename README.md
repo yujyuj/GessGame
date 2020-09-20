@@ -18,8 +18,8 @@ GessGame.py
 constants.py
 ```
 
-Option 2: Use ```pyinstaller``` to make an executable that can be downloaded and run on any Windows machines without any dependencies/packages/python interpreter.
-* step 1, Intall ```pyinstaller``` with ```pip install pyinstaller```
+Option 2: Use ```PyInstaller``` to make an executable that can be downloaded and run on any Windows machines without any dependencies/packages/python interpreter.
+* step 1, Intall ```PyInstaller``` with ```pip install pyinstaller```
 * Step 2, Place the 4 Pyhon files mentioned above in a folder
 * step 3, Open command line, ```cd``` into the folder then run  ```pyinstaller main.py --onefile --noconsole```
 * step 4, Two folders ```build``` and ```dist``` should be generated. Open ```dist``` and there exists the executable.
